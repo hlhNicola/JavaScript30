@@ -113,8 +113,12 @@
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
-      const [first, last] = people.map(item => item.split(", ")); // brilliant use of destructure array!
-      const lastName = last.sort((a, b) => (a > b ? 1 : -1));
+
+      const lastName = people.sort((lastOne, nextOne) => {
+        const [aFirst, aLast] = lastOne.split(", "); // brilliant use of destructure array!
+        const [bFirst, bLast] = nextOne.split(", ");
+        return aLast > bLast ? 1 : -1;
+      });
       console.table(lastName);
 
       // 8. Reduce Exercise
@@ -135,9 +139,12 @@
         "car",
         "truck"
       ];
-      // const sumInstances = data.reduce((data) => {
-      //   data ?
-      // })
+      const sumInstances = data.reduce((obj, item) => {
+        obj[item] ? obj[item]++ : (obj[item] = 1);
+        console.log(obj);
+        return obj;
+      }, {});
+      console.log(sumInstances);
     </script>
   </body>
 </html>
